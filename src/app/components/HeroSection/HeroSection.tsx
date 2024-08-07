@@ -3,12 +3,12 @@ import Link from "next/link";
 
 export default function HeroSection() {
   return (
-    <div className="pt-28 pb-16 px-5 h-[calc(100dvh-6rem)]flex flex-col max-w-sm m-auto">
+    <div className="pt-20 pb-16 px-5 h-[calc(100dvh-6rem)]flex flex-col max-w-sm m-auto">
       <Image
         className="mb-5 my-0 mx-auto"
         src="/bill.png"
         alt="Teext-me Logo"
-        width={60}
+        width={55}
         height={1}
       />
 
