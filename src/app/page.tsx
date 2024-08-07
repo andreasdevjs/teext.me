@@ -5,7 +5,6 @@ import Navbar from "./components/Navbar/Navbar";
 export default function Home() {
   return (
     <div>
-      <AnnouncementsBanner text="Earn satoshis with each message" />
       <Navbar />
       <HeroSection />
     </div>
