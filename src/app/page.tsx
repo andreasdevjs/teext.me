@@ -1,12 +1,16 @@
 import AnnouncementsBanner from "./components/AnnouncementsBanner/AnnouncementsBanner";
 import HeroSection from "./components/HeroSection/HeroSection";
+import HowItWorks from "./components/HowItWorks/HowItWorks";
 import Navbar from "./components/Navbar/Navbar";
 
 export default function Home() {
   return (
-    <div>
-      <Navbar />
-      <HeroSection />
-    </div>
+    <>
+      <div className="bg-[linear-gradient(to_bottom,#ffffff,#f9fcfe,#f2f9fa,#edf6f2,#eff2e8)]">
+        <Navbar />
+        <HeroSection />
+      </div>
+      <HowItWorks />
+    </>
   );
 }

@@ -1,3 +1,5 @@
+import "animate.css";
+
 export default function Navbar() {
   return (
     <nav className="h-16 border-b flex justify-center items-center">

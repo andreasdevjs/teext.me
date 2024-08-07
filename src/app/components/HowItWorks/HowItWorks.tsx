@@ -1,3 +1,3 @@
 export default function HowItWorks() {
-  return <div>how it works</div>;
+  return <div className="p-5 bg-[#eff2e8]"></div>;
 }
