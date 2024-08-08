@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import "animate.css";
 
 export default function HeroSection() {
@@ -33,7 +32,7 @@ export default function HeroSection() {
 
       <div className="w-full animate__animated animate__pulse animate__delay-1s">
         <button className="bg-blue-400 py-2 px-6 rounded-lg font-bold text-white hover:bg-blue-500 w-full	">
-          Claim this link
+          Claim This Link
         </button>
       </div>
 
@@ -80,7 +79,7 @@ export default function HeroSection() {
               height={1}
             />
           </div>
-          <h4 className="text-sm ml-1">Plan text only</h4>
+          <h4 className="text-sm ml-1">Earn fiat or stack sats</h4>
         </div>
       </div>
     </div>

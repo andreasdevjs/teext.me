@@ -1,6 +1,6 @@
 import AnnouncementsBanner from "./components/AnnouncementsBanner/AnnouncementsBanner";
 import HeroSection from "./components/HeroSection/HeroSection";
-import HowItWorks from "./components/HowItWorks/HowItWorks";
+import ShowRoomLinks from "./components/ShowRoomLinks/ShowRoomLinks";
 import Navbar from "./components/Navbar/Navbar";
 
 export default function Home() {
@@ -10,7 +10,7 @@ export default function Home() {
         <Navbar />
         <HeroSection />
       </div>
-      <HowItWorks />
+      <ShowRoomLinks />
     </>
   );
 }
