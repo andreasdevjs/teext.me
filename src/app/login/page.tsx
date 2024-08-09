@@ -1,6 +1,8 @@
+import Image from "next/image";
+
 export default function Register() {
   return (
-    <div className="pt-10">
+    <div className="pt-10 max-w-sm m-auto">
       {/* Sección entrar a la cuenta */}
       <div className="p-5">
         <h2 className="mb-1 font-black text-3xl tracking-[-1px] drop-shadow-2xl	">
