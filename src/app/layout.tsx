@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={dmSans.className}>
+      <body className={`${dmSans.className} bg-[#f0f2f5]`}>
         {children}
         <Analytics />
         <SpeedInsights />

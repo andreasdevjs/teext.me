@@ -5,7 +5,7 @@ import CountUp from "react-countup";
 export default function HowItWorks() {
   return (
     <div>
-      <div className="p-5 bg-[#eff2e8] text-center">
+      <div className="p-5 bg-[#f0f2f5] text-center">
         <CountUp
           startOnMount
           className=" mb-2 text-center font-semibold text-4xl"
