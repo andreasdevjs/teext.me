@@ -1,118 +1,45 @@
-export default function Dashboard() {
+export default function Wallet() {
   return (
     <div className="pt-10 max-w-3xl m-auto bg-[#f0f2f5] min-h-dvh	">
       {/* Sección entrar a la cuenta */}
       <div className="p-5">
         <h2 className="mb-5 font-black text-3xl tracking-[-1px] drop-shadow-2xl	">
-          Messages
+          Wallet
         </h2>
         <div>
-          {/* Mensajes */}
+          {/* Ajustes */}
           <div className="mb-5 p-5 bg-white shadow-[rgba(0,0,0,0.04)_0px_3px_5px] rounded-lg">
-            <div className="mb-2 flex justify-between">
-              <p className="text-xs opacity-50">
-                <strong>By:</strong> -anonymous-
-              </p>
-              <p className="text-xs opacity-50">
-                <strong>Date:</strong> 22-08-2024
-              </p>
+            <div className="flex items-center">
+              <h3 className="mb-1 mr-1.5">Receiving email</h3>{" "}
+              <svg
+                className="w-[14px] h-[14px] text-gray-800 dark:text-white mb-1"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.008-3.018a1.502 1.502 0 0 1 2.522 1.159v.024a1.44 1.44 0 0 1-1.493 1.418 1 1 0 0 0-1.037.999V14a1 1 0 1 0 2 0v-.539a3.44 3.44 0 0 0 2.529-3.256 3.502 3.502 0 0 0-7-.255 1 1 0 0 0 2 .076c.014-.398.187-.774.48-1.044Zm.982 7.026a1 1 0 1 0 0 2H12a1 1 0 1 0 0-2h-.01Z"
+                  clipRule="evenodd"
+                />
+              </svg>
             </div>
-            <div>
-              <p className="text-sm opacity-80 leading-tight	">
-                Hi! I was contacting you because we are interested in making you
-                an offer from CRUWI.com to work remotely. Tell me if you are
-                interested in contacting us. Best regards.
-              </p>
-            </div>
-          </div>
 
-          <div className="mb-5 p-5 bg-white shadow-[rgba(0,0,0,0.04)_0px_3px_5px] rounded-lg">
-            <div className="mb-2 flex justify-between">
-              <p className="text-xs opacity-50">
-                <strong>By:</strong> andreasdevjs@gmail.com
-              </p>
-              <p className="text-xs opacity-50">
-                <strong>Date:</strong> 22-08-2024
-              </p>
-            </div>
-            <div>
-              <p className="text-sm opacity-80 leading-tight	">
-                Hi! I was contacting you because we are interested in making you
-                an offer from CRUWI.com to work remotely. Tell me if you are
-                interested in contacting us. Best regards.
-              </p>
-            </div>
-          </div>
-
-          <div className="mb-5 p-5 bg-white shadow-[rgba(0,0,0,0.04)_0px_3px_5px] rounded-lg">
-            <div className="mb-2 flex justify-between">
-              <p className="text-xs opacity-50">
-                <strong>By:</strong> pepe@simonec.com
-              </p>
-              <p className="text-xs opacity-50">
-                <strong>Date:</strong> 22-08-2024
-              </p>
-            </div>
-            <div>
-              <p className="text-sm opacity-80 leading-tight	">
-                Hi! I was contacting you because we are interested in making you
-                an offer from CRUWI.com to work remotely. Tell me if you are
-                interested in contacting us. Best regards.
-              </p>
-            </div>
-          </div>
-
-          <div className="mb-5 p-5 bg-white shadow-[rgba(0,0,0,0.04)_0px_3px_5px] rounded-lg">
-            <div className="mb-2 flex justify-between">
-              <p className="text-xs opacity-50">
-                <strong>By:</strong> -anonymous-
-              </p>
-              <p className="text-xs opacity-50">
-                <strong>Date:</strong> 22-08-2024
-              </p>
-            </div>
-            <div>
-              <p className="text-sm opacity-80 leading-tight	">
-                Hi! I was contacting you because we are interested in making you
-                an offer from CRUWI.com to work remotely. Tell me if you are
-                interested in contacting us. Best regards.
-              </p>
-            </div>
-          </div>
-
-          <div className="mb-5 p-5 bg-white shadow-[rgba(0,0,0,0.04)_0px_3px_5px] rounded-lg">
-            <div className="mb-2 flex justify-between">
-              <p className="text-xs opacity-50">
-                <strong>By:</strong> -anonymous-
-              </p>
-              <p className="text-xs opacity-50">
-                <strong>Date:</strong> 22-08-2024
-              </p>
-            </div>
-            <div>
-              <p className="text-sm opacity-80 leading-tight	">
-                Hi! I was contacting you because we are interested in making you
-                an offer from CRUWI.com to work remotely. Tell me if you are
-                interested in contacting us. Best regards.
-              </p>
-            </div>
-          </div>
-
-          <div className="mb-5 p-5 bg-white shadow-[rgba(0,0,0,0.04)_0px_3px_5px] rounded-lg">
-            <div className="mb-2 flex justify-between">
-              <p className="text-xs opacity-50">
-                <strong>By:</strong> -anonymous-
-              </p>
-              <p className="text-xs opacity-50">
-                <strong>Date:</strong> 22-08-2024
-              </p>
-            </div>
-            <div>
-              <p className="text-sm opacity-80 leading-tight	">
-                Hi! I was contacting you because we are interested in making you
-                an offer from CRUWI.com to work remotely. Tell me if you are
-                interested in contacting us. Best regards.
-              </p>
+            <input
+              type="text"
+              className="border w-full rounded-lg bg-white p-2 text-md"
+              placeholder="your@email.com"
+            />
+            <h5 className="leading-tight mt-1 text-xs text-gray-500">
+              Messages will be sent to this email address
+            </h5>
+            <div className="mt-5">
+              <button className="bg-blue-400 py-2 px-6 rounded-lg font-bold text-white hover:bg-blue-500 w-full	">
+                Save changes
+              </button>
             </div>
           </div>
 
