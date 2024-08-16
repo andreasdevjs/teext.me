@@ -1,4 +1,7 @@
 import Image from "next/image";
+
+import UsernameInput from "../UsernameInput/UsernameInput";
+
 import "animate.css";
 
 export default function HeroSection() {
@@ -21,20 +24,7 @@ export default function HeroSection() {
         paid for each message. Keep your data private 🔒
       </h3>
 
-      <div className="mb-2 p-4 border flex rounded-lg w-full bg-white">
-        <h3 className="font-semibold mr-0.5">teext.me/</h3>
-        <input
-          type="text"
-          placeholder="laminyamal19"
-          className="focus:outline-none bg-transparent"
-        />
-      </div>
-
-      <div className="w-full animate__animated animate__pulse animate__delay-1s">
-        <button className="bg-blue-400 py-2 px-6 rounded-lg font-bold text-white hover:bg-blue-500 w-full	">
-          Claim This Link
-        </button>
-      </div>
+      <UsernameInput />
 
       <div className="mt-5">
         <div className="flex items-center mb-1">

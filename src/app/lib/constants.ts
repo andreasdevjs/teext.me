@@ -1,1 +1,1 @@
-export const SENSITIVE_WORDS = ['password', 'passwords', 'register', 'login', 'dashboard']
+export const SENSITIVE_WORDS = ['password', 'passwords', 'register', 'login', 'dashboard', 'faq']
