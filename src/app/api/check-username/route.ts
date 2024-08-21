@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+
+import dbConnect from "@/app/lib/db";
+import User from "@/app/models/User";
 import { SENSITIVE_WORDS } from "@/app/lib/constants";
 import { isValidUsername } from "@/app/lib/utils";
 
@@ -6,10 +9,29 @@ export async function POST(request: NextRequest, response: NextResponse) {
   const res = await request.json();
   const { username } = res;
 
-  // Comprobamos que no es un nombre prohibido
+  // Comprobamos que no venga vacío
+  if (!username) {
+    return NextResponse.json(
+      {
+        success: false,
+        error: {
+          message: "Username cannot be empty",
+          code: "INVALID_USERNAME",
+        },
+      },
+      { status: 400 }
+    );
+  }
+
   if (SENSITIVE_WORDS.includes(username)) {
     return NextResponse.json(
-      { success: "false", error: "❌ You cannot use this name" },
+      {
+        success: false,
+        error: {
+          message: "❌ You cannot use this name",
+          code: "INVALID_USERNAME",
+        },
+      },
       { status: 400 }
     );
   }
@@ -18,22 +40,31 @@ export async function POST(request: NextRequest, response: NextResponse) {
   if (!isValidUsername(username)) {
     return NextResponse.json(
       {
-        success: "false",
-        error: "Only letters, numbers and dashes are allowed",
+        success: false,
+        error: {
+          message: "Only letters, numbers and dashes are allowed",
+          code: "INVALID_USERNAME_CHARACTERS",
+        },
       },
       { status: 400 }
     );
   }
 
-  // Por último, comprobamos que no esté ya elegido por un usuario
-  let isTaken = false; // TODO: BORRAR E IMPLEMENTAR LLAMADA BBDD
-  if (isTaken) {
+  // Connect to the database
+  await dbConnect();
+
+  // Check if the username already exists
+  const usernameExists = await User.findOne({ username });
+  if (usernameExists) {
     return NextResponse.json(
       {
-        success: "false",
-        error: "Username already taken",
+        success: false,
+        error: {
+          message: "Username is already taken",
+          code: "USERNAME_TAKEN",
+        },
       },
-      { status: 400 }
+      { status: 409 }
     );
   }
 

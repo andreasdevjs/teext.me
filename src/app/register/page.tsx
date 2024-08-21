@@ -1,15 +1,23 @@
 'use client';
 
-import { useState, ChangeEvent, KeyboardEvent } from 'react';
+import { useState, ChangeEvent, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
 export default function Register() {
 
+  // Para redirigir al usuario
   const router = useRouter();
 
   // Parámetros que vienen de la landing una vez comprobado el user (volver a chequear en el back)
   const searchParams = useSearchParams();
   const username = searchParams.get('username');
+
+  // Check if username is empty and redirect to home page to check a username
+  useEffect(() => {
+    if (!username) {
+      router.push('/');
+    }
+  }, [username, router]);
 
   // Email
   const [email, setEmail] = useState<string>('');
@@ -29,10 +37,58 @@ export default function Register() {
     setShowPassword(!showPassword);
   }
 
+  // Loading state
+  const [loading, setLoading] = useState<Boolean>(false);
+
+  // Error message if any
+  const [message, setMessage] = useState<string | null>(null);
+
   // Main function to check for the username
-  const handleSubmitUsername = async () => {
-    console.log(email, password);
-    alert(`Hasta aqui llega la app por ahora`);
+  const handleSubmitCreateUser = async () => {
+
+    // Input validations
+    if (email.trim() === '') {
+      setMessage('Email cannot be empty');
+      return;
+    }
+
+    if (password.trim() === '') {
+      setMessage('Password cannot be empty');
+      return;
+    }
+
+    setLoading(true);
+
+    const userRegistrationData = {
+      username,
+      email,
+      password
+    }
+
+    try {
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userRegistrationData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Aquí gestionamos el success case
+        // Redirigimos a crear la cuenta
+        setLoading(false);
+      } else {
+        // Handle any error response from the server
+        setMessage(data.error.message);
+        setLoading(false);
+      }
+    } catch (error) {
+      setMessage('An error has occurred, refresh the page');
+      setLoading(false);
+    }
   };
 
   // Gestionamos el botón/flecha de ir atrás
@@ -85,7 +141,7 @@ export default function Register() {
         <div>
           <input
             className="mb-4 p-4 rounded-lg w-full bg-[#f7f7f7]"
-            type="text"
+            type="email"
             placeholder="Email"
             name="email"
             value={email}
@@ -94,7 +150,7 @@ export default function Register() {
         </div>
 
         {/* Password */}
-        <div className="border relative">
+        <div className="relative">
           <input
             className="p-4 rounded-lg w-full bg-[#f7f7f7]"
             type={showPassword ? "text" : "password"}
@@ -118,9 +174,16 @@ export default function Register() {
         </div>
 
         <div className="w-full mt-4">
-          <button onClick={handleSubmitUsername} className="bg-blue-400 py-2 px-6 rounded-lg font-bold text-white hover:bg-blue-500 w-full	">
-            Create Account
-          </button>
+          {loading ? (
+            <button disabled className="bg-blue-400 py-2 px-6 rounded-lg font-bold text-white hover:bg-blue-500 w-full disabled:opacity-50">
+              Loading...
+            </button>
+          ) : (
+            <button onClick={handleSubmitCreateUser} className="bg-blue-400 py-2 px-6 rounded-lg font-bold text-white hover:bg-blue-500 w-full	">
+              Create Account
+            </button>
+          )}
+          {message && <p className="mt-1 text-sm text-red-500">{message}</p>}
         </div>
         <div className="mt-4 flex opacity-50">
           <p className="mr-1">or</p>

@@ -48,11 +48,11 @@ export default function UsernameInput() {
         setLoading(false);
       } else {
         // Handle any error response from the server
-        setMessage(data.error);
+        setMessage(data.error.message);
         setLoading(false);
       }
     } catch (error) {
-      setMessage('An error has occurred, refresh the page');
+      setMessage('An error has occurred, please refresh the page');
       setLoading(false);
     }
   };
@@ -87,7 +87,6 @@ export default function UsernameInput() {
             Claim This Link
           </button>
         )}
-
       </div>
       {message && <p className="mt-1 text-sm text-red-500">{message}</p>}
     </div>
