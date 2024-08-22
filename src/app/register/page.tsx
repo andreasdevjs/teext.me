@@ -80,6 +80,7 @@ export default function Register() {
         // Aquí gestionamos el success case
         // Redirigimos a crear la cuenta
         setLoading(false);
+        router.push('/dashboard')
       } else {
         // Handle any error response from the server
         setMessage(data.error.message);

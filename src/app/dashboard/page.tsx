@@ -1,10 +1,20 @@
-export default function Dashboard() {
+import { getSession } from "../lib/sessions/getSession";
+
+export default async function Dashboard() {
+  const session = await getSession();
+  if (!session) {
+    return (
+      <div>
+        not allowed to see this
+      </div>
+    )
+  }
   return (
     <div className="pt-10 max-w-3xl m-auto bg-[#f0f2f5] min-h-dvh	">
       {/* Sección entrar a la cuenta */}
       <div className="p-5">
         <h2 className="mb-5 font-black text-3xl tracking-[-1px] drop-shadow-2xl	">
-          Messages
+          Messages {session.userId}
         </h2>
         <div>
           {/* Mensajes */}

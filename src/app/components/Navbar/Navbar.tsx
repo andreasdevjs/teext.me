@@ -6,7 +6,7 @@ export default function Navbar() {
       <h1 className=" font-black text-3xl tracking-tighter">teext.me</h1>
       <div className="">
         <button className=" py-2 px-6 rounded-lg font-bold border text-blue-400 hover:bg-blue-500 w-full hover:text-white">
-          <span>Log in</span>
+          <span>Sign in</span>
         </button>
       </div>
     </nav>

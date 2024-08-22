@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 
 import dbConnect from "@/app/lib/db";
 import User from "@/app/models/User";
+import { createSession } from "@/app/lib/sessions/createSession";
 
 interface RegisterRequestBody {
   username: string;
@@ -99,6 +100,10 @@ export async function POST(request: NextRequest) {
       password: hashedPassword, // Store the hashed password
     });
 
+    // Creamos la sesión del usuario
+    const userId = newUser.id.toString();
+    await createSession(userId);
+
     return NextResponse.json(
       {
         success: true,
@@ -107,7 +112,7 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error) {
-    console.error("Registration error:", JSON.stringify(error));
+    console.error("Registration error:", error);
     return NextResponse.json(
       {
         success: false,
@@ -120,3 +125,5 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+// TODO: check username again.. (manually add a username by parameter)
