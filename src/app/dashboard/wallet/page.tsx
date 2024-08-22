@@ -37,7 +37,7 @@ export default function Wallet() {
               Messages will be sent to this email address
             </h5>
             <div className="mt-5">
-              <button className="bg-blue-400 py-2 px-6 rounded-lg font-bold text-white hover:bg-blue-500 w-full	">
+              <button className="bg-black py-2 px-6 rounded-lg font-bold text-white hover:bg-black w-full	">
                 Save changes
               </button>
             </div>

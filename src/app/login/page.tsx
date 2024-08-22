@@ -128,11 +128,11 @@ export default function Login() {
 
         <div className="w-full mt-4">
           {loading ? (
-            <button disabled className="bg-blue-400 py-2 px-6 rounded-lg font-bold text-white hover:bg-blue-500 w-full disabled:opacity-50">
-              Loading...
+            <button disabled className="bg-black py-2 px-6 rounded-lg font-bold text-white hover:bg-black w-full disabled:opacity-50">
+              Checking...
             </button>
           ) : (
-            <button onClick={handleSubmitCreateUser} className="bg-blue-400 py-2 px-6 rounded-lg font-bold text-white hover:bg-blue-500 w-full	">
+            <button onClick={handleSubmitCreateUser} className="bg-black py-2 px-6 rounded-lg font-bold text-white hover:bg-black w-full	">
               Sign in
             </button>
           )}

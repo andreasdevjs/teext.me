@@ -6,9 +6,8 @@ export default function Page({ params }: { params: { slug: string } }) {
   const [isFocused, setIsFocused] = useState(false);
   return (
     <div
-      className={`p-5 h-dvh flex justify-center items-center bg-[#f0f2f5] ${
-        isFocused ? "bg-black bg-opacity-60" : ""
-      }`}
+      className={`p-5 h-dvh flex justify-center items-center bg-[#f0f2f5] ${isFocused ? "bg-black bg-opacity-60" : ""
+        }`}
     >
       <div className="text-center">
         <div className="mb-5">
@@ -53,7 +52,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           onBlur={() => setIsFocused(false)}
         ></textarea>
         <div className="mb-4">
-          <button className="bg-blue-400 py-2 px-6 rounded-lg font-bold text-white hover:bg-blue-500 w-full	">
+          <button className="bg-black py-2 px-6 rounded-lg font-bold text-white hover:bg-black w-full	">
             Send
           </button>
         </div>

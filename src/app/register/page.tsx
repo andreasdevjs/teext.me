@@ -14,7 +14,7 @@ export default function Register({
     redirect('/');
   }
   return (
-    <div>
+    <div className="max-w-md m-auto">
       {/* Flecha ir atrás */}
       <div className="p-5 flex">
         <div className="p-2 border rounded-full">

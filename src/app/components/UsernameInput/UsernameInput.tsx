@@ -70,7 +70,7 @@ export default function UsernameInput() {
         <h3 className="font-semibold mr-0.5">teext.me/</h3>
         <input
           type="text"
-          placeholder="laminyamal19"
+          placeholder="username"
           className="focus:outline-none bg-transparent w-full"
           value={username}
           onChange={handleInputChange}
@@ -79,11 +79,11 @@ export default function UsernameInput() {
       </div>
       <div className="w-full animate__animated animate__pulse animate__delay-1s">
         {loading ? (
-          <button disabled className="bg-blue-400 py-2 px-6 rounded-lg font-bold text-white hover:bg-blue-500 w-full disabled:opacity-50">
+          <button disabled className="bg-black py-2 px-6 rounded-lg font-bold text-white w-full disabled:opacity-50">
             Checking...
           </button>
         ) : (
-          <button onClick={handleSubmitUsername} className="bg-blue-400 py-2 px-6 rounded-lg font-bold text-white hover:bg-blue-500 w-full	">
+          <button onClick={handleSubmitUsername} className="bg-black py-2 px-6 rounded-lg font-bold text-white hover:bg-black w-full	">
             Claim This Link
           </button>
         )}

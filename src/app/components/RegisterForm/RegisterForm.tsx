@@ -130,11 +130,11 @@ export default function RegisterForm() {
 
         <div className="w-full mt-4">
           {loading ? (
-            <button disabled className="bg-blue-400 py-2 px-6 rounded-lg font-bold text-white hover:bg-blue-500 w-full disabled:opacity-50">
+            <button disabled className="bg-black py-2 px-6 rounded-lg font-bold text-white w-full disabled:opacity-50">
               Loading...
             </button>
           ) : (
-            <button onClick={handleSubmitCreateUser} className="bg-blue-400 py-2 px-6 rounded-lg font-bold text-white hover:bg-blue-500 w-full	">
+            <button onClick={handleSubmitCreateUser} className="bg-black py-2 px-6 rounded-lg font-bold text-white w-full	">
               Create Account
             </button>
           )}
