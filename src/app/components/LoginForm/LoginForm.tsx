@@ -1,0 +1,127 @@
+'use client';
+
+import { useState, ChangeEvent } from 'react';
+import { useRouter } from 'next/navigation';
+
+export default function LoginForm() {
+
+  const router = useRouter();
+
+  const [email, setEmail] = useState<string>('');
+  const handleInputChangeEmail = (event: ChangeEvent<HTMLInputElement>): void => {
+    setEmail(event.target.value.toLocaleLowerCase());
+  };
+
+  const [password, setPassword] = useState<string>('');
+  const handleInputChangePassword = (event: ChangeEvent<HTMLInputElement>): void => {
+    setPassword(event.target.value.toLocaleLowerCase());
+  };
+
+  const [showPassword, setShowPassword] = useState<Boolean>(false);
+  const handleToggleShowPassword = (): void => {
+    setShowPassword(!showPassword);
+  }
+
+  const [loading, setLoading] = useState<Boolean>(false);
+
+  const [message, setMessage] = useState<string | null>(null);
+
+  const handleSubmitCreateUser = async () => {
+
+    // Input validations
+    if (email.trim() === '') {
+      setMessage('Email cannot be empty');
+      return;
+    }
+
+    if (password.trim() === '') {
+      setMessage('Password cannot be empty');
+      return;
+    }
+
+    setLoading(true);
+
+    const userLoginData = {
+      email,
+      password
+    }
+
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userLoginData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Aquí gestionamos el success case
+        // Redirigimos a crear la cuenta
+        setLoading(false);
+        router.push('/dashboard')
+      } else {
+        // Handle any error response from the server
+        setMessage(data.error.message);
+        setLoading(false);
+      }
+    } catch (error) {
+      setMessage('An error has occurred, refresh the page');
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      {/* Email */}
+      <div>
+        <input
+          className="mb-4 p-4 rounded-lg w-full bg-[#f7f7f7]"
+          type="email"
+          placeholder="Email"
+          name="email"
+          value={email}
+          onChange={handleInputChangeEmail}
+        />
+      </div>
+      {/* Password */}
+      <div className="relative">
+        <input
+          className="p-4 rounded-lg w-full bg-[#f7f7f7]"
+          type={showPassword ? "text" : "password"}
+          placeholder="Password"
+          name="password"
+          value={password}
+          onChange={handleInputChangePassword}
+        />
+        <div onClick={handleToggleShowPassword} className="absolute top-1/2 right-3 transform -translate-y-1/2">
+          {showPassword ? (
+            <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" strokeWidth="2" d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
+              <path stroke="currentColor" strokeWidth="2" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+          ) : (
+            <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.933 13.909A4.357 4.357 0 0 1 3 12c0-1 4-6 9-6m7.6 3.8A5.068 5.068 0 0 1 21 12c0 1-3 6-9 6-.314 0-.62-.014-.918-.04M5 19 19 5m-4 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+            </svg>
+          )}
+
+        </div>
+      </div>
+      <div className="w-full mt-4">
+        {loading ? (
+          <button disabled className="bg-black py-2 px-6 rounded-lg font-bold text-white hover:bg-black w-full disabled:opacity-50">
+            Checking...
+          </button>
+        ) : (
+          <button onClick={handleSubmitCreateUser} className="bg-black py-2 px-6 rounded-lg font-bold text-white hover:bg-black w-full	">
+            Sign in
+          </button>
+        )}
+        {message && <p className="mt-1 text-sm text-red-500">{message}</p>}
+      </div>
+    </>
+  );
+}
