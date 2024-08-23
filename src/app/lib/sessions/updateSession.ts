@@ -10,7 +10,7 @@ export async function updateSession(): Promise<void> {
     }
 
     // Recreate the session with the same userId, extending the expiration
-    await createSession(session.userId);
+    await createSession(session.userId, session.username);
   } catch (error) {
     if (error instanceof MissingSessionError) {
       throw error; // Propagate known error
