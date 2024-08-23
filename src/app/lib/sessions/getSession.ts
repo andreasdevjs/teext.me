@@ -11,6 +11,7 @@ import {
 // Define SessionPayload
 export type SessionPayload = {
   userId: string;
+  username: string;
   expiresAt: string; // ISO string for the expiration date
 };
 

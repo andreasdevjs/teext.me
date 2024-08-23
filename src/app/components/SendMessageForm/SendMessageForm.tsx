@@ -1,9 +1,11 @@
 "use client";
+
 import { useState } from "react";
 import Image from "next/image";
 
-export default function Page({ params }: { params: { slug: string } }) {
+export default function SendMessageForm({ username }: { username: string }) {
   const [isFocused, setIsFocused] = useState(false);
+
   return (
     <div
       className={`p-5 h-dvh flex justify-center items-center bg-[#f0f2f5] ${isFocused ? "bg-black bg-opacity-60" : ""
@@ -35,7 +37,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
         <h1 className="mb-5 font-medium text-2xl tracking-[-1px] drop-shadow-2xl leading-tight">
           Send a message to <br />{" "}
-          <span className="font-bold">{params.slug}</span>
+          <span className="font-bold">{username}</span>
         </h1>
 
         <textarea

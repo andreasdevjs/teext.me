@@ -79,7 +79,7 @@ export async function POST(request: NextRequest) {
 
     // 4. If login successful, create a session for the user and send response
     const userId = user.id.toString();
-    await createSession(userId);
+    await createSession(userId, user.username);
 
     return NextResponse.json(
       {

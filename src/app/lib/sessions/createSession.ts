@@ -3,7 +3,7 @@ import { SignJWT } from "jose";
 
 import { getSessionConfig } from "./config";
 
-export async function createSession(userId: string): Promise<void> {
+export async function createSession(userId: string, username: string): Promise<void> {
   const {
     secret,
     cookieName = "session",
@@ -15,7 +15,7 @@ export async function createSession(userId: string): Promise<void> {
   const key = new TextEncoder().encode(secret);
   const expiresAt = new Date(Date.now() + parseDuration(sessionDuration));
 
-  const sessionToken = await new SignJWT({ userId, expiresAt })
+  const sessionToken = await new SignJWT({ userId, username, expiresAt })
     .setProtectedHeader({ alg: algorithm })
     .setIssuedAt()
     .setExpirationTime(sessionDuration)

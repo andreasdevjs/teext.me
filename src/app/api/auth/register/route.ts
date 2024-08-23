@@ -102,7 +102,7 @@ export async function POST(request: NextRequest) {
 
     // Creamos la sesión del usuario
     const userId = newUser.id.toString();
-    await createSession(userId);
+    await createSession(userId, newUser.username);
 
     return NextResponse.json(
       {
