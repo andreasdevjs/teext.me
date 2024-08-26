@@ -12,11 +12,14 @@
 
 // Si no tiene sesión o no es él mismo, mostramos el componente normal
 
-import SendMessageForm from "../components/SendMessageForm/SendMessageForm";
-import UserNotFound from '../components/UserNotFound/UserNotFound';
-
 import { getSession } from '../lib/sessions/getSession';
 import { getUserByUsername } from "../lib/actions/user";
+
+import { getPublicDataFromUser } from '../lib/utils';
+
+import UserNotFound from '../components/UserNotFound/UserNotFound';
+import UserDashboard from "../components/UserDashboard/UserDashboard";
+import SendMessageForm from "../components/SendMessageForm/SendMessageForm";
 
 export default async function Page({ params }: { params: { username: string } }) {
 
@@ -32,10 +35,13 @@ export default async function Page({ params }: { params: { username: string } })
   // Obtenemos la sesión
   const session = await getSession();
   if (session?.username === params.username) {
-    return <div>Estás en tu cuenta</div>;
+    return <UserDashboard />;
   }
 
+  // Solo mandamos los datos no sensibles
+  const publicUserData = getPublicDataFromUser(user);
+
   return (
-    <SendMessageForm username={username} />
+    <SendMessageForm user={publicUserData} />
   );
 }
