@@ -5,9 +5,7 @@ import { PaymentElement, useStripe, useElements } from '@stripe/react-stripe-js'
 
 import { formatCentsToEurs } from '@/app/lib/utils';
 
-export default function CheckoutForm({ messagePrice }: any) {
-
-  console.log('-- Rendering CheckoutForm --');
+export default function CheckoutForm({ user, message, messagePrice }: any) {
 
   const [paymentLoading, setPaymentLoading] = useState<Boolean>(false);
 
@@ -44,7 +42,7 @@ export default function CheckoutForm({ messagePrice }: any) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ messagePrice }),
+      body: JSON.stringify({ messagePrice, message, user }),
     });
     const resData = await res.json();
 
@@ -80,7 +78,7 @@ export default function CheckoutForm({ messagePrice }: any) {
       <PaymentElement />
       <div className="mt-4">
         {paymentLoading ? (
-          <button disabled className="bg-black py-2 px-6 rounded-lg font-bold text-white hover:bg-black w-full cursor-pointer">
+          <button disabled className="bg-black py-2 px-6 rounded-lg font-bold text-white hover:bg-black w-full cursor-pointer disabled:opacity-50">
             Please wait...
           </button>
         ) : (

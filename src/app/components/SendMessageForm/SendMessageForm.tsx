@@ -43,7 +43,6 @@ export default function SendMessageForm({ user }: any) {
       setErrorMessage('Message cannot be empty');
       return;
     }
-
     toggleModal();
   };
 
@@ -131,7 +130,7 @@ export default function SendMessageForm({ user }: any) {
       </div>
 
       {/* Payment Modal */}
-      {isOpen && <PaymentModal user={user} isOpen={isOpen} toggleModal={toggleModal} />}
+      {isOpen && <PaymentModal user={user} message={message} isOpen={isOpen} toggleModal={toggleModal} />}
     </>
   );
 }

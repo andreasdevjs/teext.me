@@ -3,12 +3,15 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 
+import { handleSuccessfulPayment } from "@/app/lib/webhooks/payments";
+
 export async function POST(request: NextRequest, response: NextResponse) {
+
   // Cogemos la signature
   const sig = request.headers.get("stripe-signature");
 
   // Secret concreto del endpoint webhook
-  const endpointSecret = "whsec_vDQx6xeYMlRh1abFbtUGVcuj6eZEHpTv";
+  const endpointSecret = "whsec_qBkvgercRXNerlZKmOhpEnBaJnkLDMcP";
 
   // Obtenemos el body
   const body = await request.text();
@@ -24,12 +27,8 @@ export async function POST(request: NextRequest, response: NextResponse) {
 
   switch (event.type) {
     case "payment_intent.succeeded": {
-      const session = event.data.object;
-      console.log(session);
-      return NextResponse.json(
-        { success: "true", data: { message: "Ok bro" } },
-        { status: 200 }
-      );
+      const paymentIntent = event.data.object as Stripe.PaymentIntent;
+      await handleSuccessfulPayment(paymentIntent);
       break;
     }
     default:
@@ -37,7 +36,7 @@ export async function POST(request: NextRequest, response: NextResponse) {
   }
 
   return NextResponse.json(
-    { success: "true", data: { message: "Ok bro" } },
+    { success: "true", data: { message: "Webhook received" } },
     { status: 200 }
   );
 }

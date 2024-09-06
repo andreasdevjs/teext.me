@@ -2,7 +2,7 @@ import mongoose, { Schema, model, Types, Document } from "mongoose";
 
 // Define the IUser interface
 export interface IUser extends Document {
-  _id?: Types.ObjectId;
+  _id: Types.ObjectId;
   createdAt: Date;
 
   username: string;
