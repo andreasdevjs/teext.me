@@ -17,3 +17,34 @@ export function getPublicDataFromUser(user: any) {
     isVerified: user.isVerified,
   };
 }
+
+export function sanitizeMessage(message: string): string {
+  // Regex to match URLs (http, https, www)
+  const urlRegex = /(?:https?:\/\/|www\.)[^\s]+/g;
+
+  // Regex to match domain names (e.g., cruwi.com)
+  const domainRegex = /\b(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?!@)\b/g;
+
+  // Regex to match email addresses
+  const emailRegex = /([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/g;
+
+  // Sanitize URLs
+  let sanitizedMessage = message.replace(urlRegex, (url) => {
+    return url
+      .replace(/\./g, "[dot]") // Replace dots in the domain
+      .replace(/https?:\/\//g, "[https://]") // Replace 'http://' or 'https://' with '[https://]'
+      .replace(/www\./g, "[www]"); // Replace 'www.' with '[www]'
+  });
+
+  // Sanitize domain names (without protocol)
+  sanitizedMessage = sanitizedMessage.replace(domainRegex, (domain) => {
+    return domain.replace(/\./g, "[dot]");
+  });
+
+  // Sanitize email addresses
+  sanitizedMessage = sanitizedMessage.replace(emailRegex, (email) => {
+    return email.replace(/\./g, "[dot]").replace(/@/g, "[at]");
+  });
+
+  return sanitizedMessage;
+}

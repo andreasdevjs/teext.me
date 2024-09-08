@@ -4,6 +4,8 @@ import dbConnect from "../db";
 import Message from "@/app/models/Message";
 import User from "@/app/models/User";
 
+import { sanitizeMessage } from "../utils";
+
 import { sendEmailTask } from "@/trigger/sendEmail";
 
 // Logic to handle successful payments, such as saving messages to the database
@@ -38,8 +40,11 @@ export async function handleSuccessfulPayment(
 
     // Send see config of user and send email or SMS.
     //This triggers the task and returns a handle
+
+    const sanitizedMessage = sanitizeMessage(message.content);
+
     await sendEmailTask.trigger({
-      message: message.content,
+      message: sanitizedMessage,
       recipient: user.email,
     });
   } catch (error) {

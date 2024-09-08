@@ -1,8 +1,6 @@
 import { logger, task } from "@trigger.dev/sdk/v3";
 
 import { Resend } from "resend";
-import { MessageEmailTemplate } from "@/app/emails/messageEmail";
-
 const resend = new Resend("re_J4radRRj_94tbVvpHhxEPvGa5xf7s8ZeJ");
 
 export const sendEmailTask = task({
@@ -16,7 +14,8 @@ export const sendEmailTask = task({
         from: "Teext.me 📩 <hello@teext.me>",
         to: [recipient],
         subject: "You have a new message",
-        react: MessageEmailTemplate({ message }),
+        text: message,
+        html: "",
       });
 
       if (error) {

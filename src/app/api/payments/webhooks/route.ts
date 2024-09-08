@@ -6,12 +6,11 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 import { handleSuccessfulPayment } from "@/app/lib/webhooks/payments";
 
 export async function POST(request: NextRequest, response: NextResponse) {
-
   // Cogemos la signature
   const sig = request.headers.get("stripe-signature");
 
   // Secret concreto del endpoint webhook
-  const endpointSecret = "whsec_qBkvgercRXNerlZKmOhpEnBaJnkLDMcP";
+  const endpointSecret = "whsec_vzY2EywukR6sDrbPN9kPklLETF8oAMHQ";
 
   // Obtenemos el body
   const body = await request.text();

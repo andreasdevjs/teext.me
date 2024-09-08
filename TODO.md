@@ -18,4 +18,14 @@
 
 - Add a logout button and integrate functionality ✅
 
-- Send message functionality 
+- Send message functionality ✅
+
+- Session management ✅
+
+- Payment with Stripe ✅
+
+- Payment flow, send message + send email with Trigger.dev and Resend ✅
+
+- Sanitize text message so no links are available to click in email clients ✅
+
+- 
